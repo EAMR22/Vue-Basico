@@ -10,14 +10,15 @@
     <script src="https://unpkg.com/vue@next"></script>
     <div id="app"></div>
     <script>
-        const vm = Vue.createApp({    //Es un componente
+        const vm = Vue.createApp({   
             data(){
                 return {
-                    text: "<p>Hola vue</p>"
+                    attr: "alt",
+                    img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
                 };
             },
-            template: `<div v-html="text"></div>` // Es una directiva, con v-html ignora la etiqueta p y imprime Hola vue.
-        }).mount("#app");    // Con v-once no se actualiza el cambio en la pagina cuando cambio el valor de vm.
+            template: `<img v-bind:[attr]="img" />`
+        }).mount("#app");    
         console.log(vm);
     </script>
 </body>
