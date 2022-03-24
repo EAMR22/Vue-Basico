@@ -13,11 +13,15 @@
         const vm = Vue.createApp({   
             data(){
                 return {
-                    attr: "alt",
-                    img: "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
+                   counter: 0
                 };
             },
-            template: `<img v-bind:[attr]="img" />`
+            methods: {
+                submit() {
+                    this.counter++;
+                }
+            },
+            template: `<form v-on:click.prevent="submit"><button>{{ counter }}</button></form>`  // v-on es un evento a la hora de hacer click.
         }).mount("#app");    
         console.log(vm);
     </script>
