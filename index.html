@@ -13,15 +13,16 @@
         const vm = Vue.createApp({   
             data(){
                 return {
-                   counter: 0
+                   text: "Hola Vue"   // v-on:"@" y v-bind:":"
                 };
             },
-            methods: {
-                submit() {
-                    this.counter++;
-                }
-            },
-            template: `<form v-on:click.prevent="submit"><button>{{ counter }}</button></form>`  // v-on es un evento a la hora de hacer click.
+            template: `
+                <p>{{ text }}</p>
+                <input 
+                    type="text" 
+                    v-model="text" 
+                />
+            `  
         }).mount("#app");    
         console.log(vm);
     </script>
