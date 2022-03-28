@@ -7,36 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="https://unpkg.com/vue@next"></script>
-    <div id="app"></div>
+    <script src="https://unpkg.com/vue@next"></script> 
+    <div id="app"></div>  
     <script>
-        const app = Vue.createApp({   
+        const app = Vue.createApp({        // En props declaramos la variable text.
+            data() {
+                return {
+                    items: ["uno", "dos", "tres"]
+                };
+            },
             template:`
-            <div>
-                <v-layout>
-                    <template v-slot:header>
-                        <button>Titulo</button>    
-                    </template>
-                    <template v-slot:content>
-                        <p>Lorem ipsum dolor.</p>    
-                    </template>
-                </v-layout>
-                  
-            </div>
+                <ul>
+                    <v-item v-for="item in items" v-bind:text="item"></v-item>      
+                </ul>
             `
         });
-        // Slot es una etiqueta que ya la trae VueJS. Y se trae el contenido de v-header.
-        app.component("v-layout", {
-            template:`
-            <header>
-                <slot name="header"></slot>    
-            </header>
-            <div>
-                <slot name="content"></slot>    
-            </div>  
-            `
-        })
 
+        app.component("v-item", {
+            props: {
+                text: {
+                    default: "Otro texto"
+                }
+            },
+            template: `<li>{{ text }}</li>`
+        });
         const vm = app.mount("#app");       
     </script>
 </body>
